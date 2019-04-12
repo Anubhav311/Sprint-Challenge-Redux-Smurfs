@@ -35,7 +35,7 @@ function mapDispatchToProps(dispatch) {
       dispatch,
       ...bindActionCreators({ deleteSmurf, getSmurfs }, dispatch)
     }
-  }
+}
 
 const mapStateToProps = (state) => {
     return ({

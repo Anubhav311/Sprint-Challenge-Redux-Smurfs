@@ -14,6 +14,12 @@ class AddSmurfForm extends React.Component {
     addSmurf = (e) => {
         e.preventDefault()
         this.props.addSmurf(this.state)
+        this.setState({
+            name: '',
+            age: '',
+            height: '',
+            id: ''
+        })
     }
 
     handleChange = (e) => {
@@ -67,7 +73,7 @@ function mapDispatchToProps(dispatch) {
       dispatch,
       ...bindActionCreators({ addSmurf }, dispatch)
     }
-  }
+}
 
 const mapStateToProps = (state) => {
     return ({fun: state.fun})

@@ -23,8 +23,17 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Reducers, actions and store all play an important role in making the redux predictable and give it it’s one way data flow feature. Actions are responsible for telling the reducer about the user interaction that happened. Then reducers are responsible for changing the state on the basis of the actions received from action creators. Then store is responsible for containing and updating the state of the application on the basis of input received from reducers. 
+Store is considered to be the “single source of truth” as all of the data related to application is stored in it, and supplied to different components as props.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is global, and component state is local. That means any component anywhere in the app can access application state (kind of like a database) so long as it is connected to the store. Component state however, lives within that specific component. As such, it can only be updated within that component and passed down to its children via props.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+By default, Redux action creators don't support asynchronous actions like fetching data, but that is an important property to for applications to work properly. So this is where we utilise Redux Thunk. Thunk allows you to write action creators that return a function instead of an action. The inner function can receive the store methods dispatch and use it to return functions and make it possible to make asynchronous calls.
 
 ## Project Set Up
 
