@@ -1,4 +1,5 @@
 import { FETCHING_DATA_START, FETCHING_DATA_SUCCESSFUL, FETCHING_DATA_FAILURE } from '../actions/index';
+import { addSmurf } from '../actions/index';
 
 const initialstate =  {
    smurfs: [],
@@ -6,7 +7,8 @@ const initialstate =  {
    addingSmurf: false,
    updatingSmurf: false,
    deletingSmurf: false,
-   error: null
+   error: null,
+   fun: addSmurf
  }
 
 function reducer(state = initialstate, action) {
