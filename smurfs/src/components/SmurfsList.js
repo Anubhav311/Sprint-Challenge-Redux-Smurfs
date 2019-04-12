@@ -1,12 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions/index';
-
+import { bindActionCreators } from 'redux';
+import { deleteSmurf } from '../actions/index';
 
 class SmurflList extends React.Component {
-
+    componentDidMount() {
+        this.props.getSmurfs()
+    }
+    deleteSmurf = (e) => {
+        e.preventDefault()
+        this.props.deleteSmurf(e.target.id)
+        console.log(e.target.id)
+    }
     render() {
-        console.log(this.props.fun)
+        console.log(this.props)
         return(
             <div>
                 {this.props.smurfs.map((smurf, index) => (
@@ -14,6 +22,7 @@ class SmurflList extends React.Component {
                         <h1>{smurf.name}</h1>
                         <h3>{smurf.age}</h3>
                         <h3>{smurf.height}</h3>
+                        <button id={smurf.id} onClick={this.deleteSmurf}>Delete</button>
                     </div>
                 ))}
             </div>
@@ -21,21 +30,19 @@ class SmurflList extends React.Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({ getSmurfs }, dispatch)
-//   }
-  
-// export connect(
-//     null, mapDispatchToProps
-//   )(SmurflList)
+function mapDispatchToProps(dispatch) {
+    return {
+      dispatch,
+      ...bindActionCreators({ deleteSmurf, getSmurfs }, dispatch)
+    }
+  }
 
 const mapStateToProps = (state) => {
     return ({
         smurfs: state.smurfs,
-        fun: state.fun
     })
 }
 
 export default connect(
-    mapStateToProps, getSmurfs
+    mapStateToProps, mapDispatchToProps
 )(SmurflList)

@@ -7,7 +7,8 @@ class AddSmurfForm extends React.Component {
     state = {
         name: '',
         age: '',
-        height: ''
+        height: '',
+        id: ''
     }
 
     addSmurf = (e) => {
@@ -24,25 +25,35 @@ class AddSmurfForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.addSmurf)
+        console.log(this.props)
         return(
             <form>
                 <input
                     type="text"
                     name="name"
+                    placeholder="name"
                     value={this.state.name}
                     onChange={this.handleChange}
                 />
                 <input
                     type="text"
                     name="age"
+                    placeholder="age"
                     value={this.state.age}
                     onChange={this.handleChange}
                 />
                 <input
                     type="text"
                     name="height"
+                    placeholder="height"
                     value={this.state.height}
+                    onChange={this.handleChange}
+                />
+                <input
+                    type="text"
+                    name="id"
+                    placeholder="id"
+                    value={this.state.id}
                     onChange={this.handleChange}
                 />
                 <button onClick={this.addSmurf}>Add Smurf</button>

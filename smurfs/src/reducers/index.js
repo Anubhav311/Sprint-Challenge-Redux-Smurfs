@@ -1,5 +1,6 @@
 import { FETCHING_DATA_START, FETCHING_DATA_SUCCESSFUL, FETCHING_DATA_FAILURE } from '../actions/index';
-import { addSmurf } from '../actions/index';
+import { ADD_SMURF_START, ADD_SMURF_SUCCESS, ADD_SMURF_FAILURE } from '../actions/index';
+import { DELETE_SMURF_START, DELETE_SMURF_SUCCESS, DELETE_SMURF_FAILURE } from '../actions/index';
 
 const initialstate =  {
    smurfs: [],
@@ -8,7 +9,6 @@ const initialstate =  {
    updatingSmurf: false,
    deletingSmurf: false,
    error: null,
-   fun: addSmurf
  }
 
 function reducer(state = initialstate, action) {
@@ -25,6 +25,16 @@ function reducer(state = initialstate, action) {
       smurfs: action.payload,
       fetchingSmurfs: false,
       error: null
+    }
+    case ADD_SMURF_SUCCESS:
+    return {
+      ...state,
+      smurfs: action.payload
+    }
+    case DELETE_SMURF_SUCCESS:
+    return {
+      ...state,
+      smurfs: action.payload
     }
     default: 
     return state;

@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
 
 export const FETCHING_DATA_START = 'FETCHING_DATA_START';
 export const FETCHING_DATA_SUCCESSFUL = 'FETCHING_DATA_SUCCESSFUL';
@@ -19,7 +17,7 @@ export const getSmurfs = () => dispatch => {
 }
 
 
-export const ADD_SMURF_START = 'ADD_SMURF_START';
+export const ADD_SMURF_START = 'ADD_SMURF_START';  
 export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS';
 export const ADD_SMURF_FAILURE = 'ADD_SMURF_FAILURE';
 
@@ -37,21 +35,21 @@ export const addSmurf = (smurf) => dispatch => {
     })
 }
 
-/*
-  For this project you'll need at least 2 action creators for the main portion,
-   and 2 more for the stretch problem.
-   Be sure to include action types for each type of action creator. Also, be sure to mind
-     the "pending" states like, fetching, creating, updating and deleting.
-   C - addSmurf
-   R - getSmurfs
-   U - updateSmurf
-   D - deleteSmurf
-*/
+export const DELETE_SMURF_START = 'DELETE_SMURF_START';
+export const DELETE_SMURF_SUCCESS = 'DELETE_SMURF_SUCCESS';
+export const DELETE_SMURF_FAILURE = 'DELETE_SMURF_FAILURE';
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ getSmurfs }, dispatch)
-// }
+export const deleteSmurf = (id) => dispatch => {
+  dispatch({type: DELETE_SMURF_START});
+  axios
+    .delete(`http://localhost:3333/smurfs/${id}`)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+      console.log(err.response)
+      dispatch({ type: DELETE_SMURF_FAILURE, payload: err.response })
+    })
+}
 
-// export default connect(
-//   null, mapDispatchToProps
-// )(getSmurfs)
