@@ -1,7 +1,21 @@
-/* 
-  Action Types Go Here!
-  Be sure to export each action type so you can pull it into your reducer
-*/
+import axios from 'axios';
+
+export const FETCHING_DATA_START = 'FETCHING_DATA_START';
+export const FETCHING_DATA_SUCCESSFUL = 'FETCHING_DATA_SUCCESSFUL';
+export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE';
+
+export const getSmurfs = () => dispatch => {
+  dispatch({type: FETCHING_DATA_START});
+  axios
+    .get(`http://localhost:3333/smurfs`)
+    .then(res => {
+      dispatch({type: FETCHING_DATA_SUCCESSFUL, payload: res.data})
+    })
+    .catch(err => {
+      dispatch({type: FETCHING_DATA_FAILURE, payload: err.response})
+    })
+}
+
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
