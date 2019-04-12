@@ -11,6 +11,8 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
+        <Link exact to="/"><button>Back to list</button></Link>
+        <Link to="/addform"><button>Add Smurf</button></Link>
         <Route exact path='/' component={SmurflList}/>
         <Route path='/addform' component={AddSmurfForm}/>
       </div>
